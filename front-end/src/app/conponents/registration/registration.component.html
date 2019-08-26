@@ -1,0 +1,54 @@
+{{displayMsg}}
+<form [formGroup]="userForm" enctype="multipart/form-data">
+	<table>
+		<tr>
+			<th>Name</th>
+			<td><input type="text" formControlName="name"></td>
+			<td *ngIf="getName.invalid && getName.touched">Please enter name.</td>
+		</tr>
+		<tr>
+			<th>Gender</th>
+			<td>
+				<input type="radio" name="" value="1" formControlName="gender">Male
+				<input type="radio" name="" value="2" formControlName="gender">Female
+			</td>
+			<td *ngIf="getGender.invalid && getGender.touched">Please select gender.</td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td><input type="text" formControlName="email"></td>
+			<td *ngIf="getEmail.invalid && getEmail.touched">
+				<span *ngIf="getEmail.errors?.required">Please enter email.</span>
+				<span *ngIf="getEmail.errors?.email">Please enter valid email.</span>		
+			</td>
+		</tr>
+		<tr>
+			<th>Mobile</th>
+			<td><input type="text" formControlName="mobile"></td>
+			<td *ngIf="getMobile.invalid && getMobile.touched">Please enter mobile.</td>
+		</tr>
+		<tr>
+			<th>Password</th>
+			<td><input type="password" formControlName="password"></td>
+			<td *ngIf="getPassword.invalid && getPassword.touched">Please enter password.</td>
+		</tr>
+		<tr>
+			<th>Repeat Password</th>
+			<td><input type="password" formControlName="rePassword"></td>
+			<td *ngIf="(getRePassword.invalid && getRePassword.touched) || (getRePassword.value != getPassword.value)">Please enter name.</td>
+		</tr>
+		<tr>
+			<th>Image</th>
+			<td><input type="file" name="image" (change)="onImageChange($event)"></td>
+			<!-- <td>Please enter name.</td> -->
+		</tr>
+		<tr>
+			<th>Address</th>
+			<td><textarea  formControlName="address"></textarea></td>
+			<td *ngIf="getAddress.invalid && getAddress.touched">Please enter address.</td>
+		</tr>
+		<tr>
+			<td colspan="3" (click)="save()"><button>SAVE</button></td>
+		</tr>
+	</table>
+</form>
